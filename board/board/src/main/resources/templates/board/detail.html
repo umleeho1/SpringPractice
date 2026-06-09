@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${board.title}">게시글 상세</title>
+    <link rel="stylesheet" th:href="@{/css/photo-style.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container">
+    <article class="detail-card">
+        <img class="detail-image"
+             th:src="@{/uploads/{fileName}(fileName=${board.savedName})}"
+             alt="이미지">
+
+        <div class="detail-body">
+            <h1 class="detail-title" th:text="${board.title}">게시글 제목</h1>
+
+            <div class="board-meta">
+                <span th:text="|작성자: ${board.writer}|">작성자</span>
+                <span th:text="|작성일: ${#temporals.format(board.createdAt, 'yyyy-MM-dd HH:mm')}|">작성일</span>
+                <span th:if="${board.updatedAt != null}"
+                      th:text="|수정일: ${#temporals.format(board.updatedAt, 'yyyy-MM-dd HH:mm')}|">
+                    수정일
+                </span>
+            </div>
+
+            <div class="detail-content" th:text="${board.content}">
+                게시글 내용
+            </div>
+
+            <div class="detail-actions">
+                <a href="/boards" class="btn btn-outline">목록</a>
+                <a th:href="@{/boards/{id}/edit(id=${board.id})}" class="btn btn-warning">수정</a>
+
+                <form th:action="@{/boards/{id}/delete(id=${board.id})}"
+                      method="post"
+                      onsubmit="return confirm('이 글을 삭제 처리하시겠습니까?');">
+                    <button type="submit" class="btn btn-danger">삭제</button>
+                </form>
+            </div>
+        </div>
+    </article>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

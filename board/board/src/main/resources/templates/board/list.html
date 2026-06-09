@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <link rel="stylesheet" th:href="@{/css/photo-style.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container">
+    <div class="toolbar">
+        <h2 class="section-title">게시판</h2>
+
+        <div class="search-box">
+            <form th:action="@{/boards}" method="get" style="display:flex; gap:8px;">
+                <input type="text"
+                       name="keyword"
+                       th:value="${keyword}"
+                       placeholder="제목 또는 작성자 검색">
+                <button type="submit" class="btn btn-outline">검색</button>
+            </form>
+
+            <a href="/boards/write" class="btn btn-primary">글 등록</a>
+        </div>
+    </div>
+
+    <div th:if="${boards == null or #lists.isEmpty(boards)}" class="empty-box">
+        등록된 게시글이 없습니다.
+    </div>
+
+    <div class="card-grid" th:if="${boards != null and !#lists.isEmpty(boards)}">
+        <article class="board-card" th:each="board : ${boards}">
+            <a th:href="@{/boards/{id}(id=${board.id})}">
+                <img class="board-thumb"
+                     th:src="@{/uploads/{fileName}(fileName=${board.savedName})}"
+                     alt="이미지">
+            </a>
+
+            <div class="board-card-body">
+                <h3 class="board-card-title">
+                    <a th:href="@{/boards/{id}(id=${board.id})}"
+                       th:text="${board.title}">
+                        게시글 제목
+                    </a>
+                </h3>
+
+                <div class="board-meta">
+                    <span th:text="|작성자: ${board.writer}|">작성자</span>
+                    <span th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd')}">작성일</span>
+                </div>
+
+                <div class="board-card-actions">
+                    <a th:href="@{/boards/{id}(id=${board.id})}" class="btn btn-outline">조회</a>
+                    <a th:href="@{/boards/{id}/edit(id=${board.id})}" class="btn btn-warning">수정</a>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- 페이지네이션 -->
+    <div class="pagination" th:if="${search != null and search.totalPages > 1}">
+        <a th:if="${search.prev}"
+           th:href="@{/boards(page=${search.startPage - 1}, keyword=${keyword})}"
+           class="page-btn">&laquo;</a>
+
+        <a th:each="p : ${#numbers.sequence(search.startPage, search.endPage)}"
+           th:href="@{/boards(page=${p}, keyword=${keyword})}"
+           th:text="${p}"
+           th:classappend="${p == search.page} ? ' active' : ''"
+           class="page-btn">1</a>
+
+        <a th:if="${search.next}"
+           th:href="@{/boards(page=${search.endPage + 1}, keyword=${keyword})}"
+           class="page-btn">&raquo;</a>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

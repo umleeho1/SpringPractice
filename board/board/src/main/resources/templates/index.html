@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>PhotoBook</title>
+    <link rel="stylesheet" th:href="@{/css/photo-style.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container">
+    <section class="hero">
+        <h1>오늘의 장면을<br>조용히 남겨보세요</h1>
+        <p>
+            특별하지 않아도 괜찮습니다.
+            당신의 하루 속 한 장면을 사진과 글로 기록해보세요.
+        </p>
+
+        <div class="hero-actions">
+            <a href="/boards" class="btn btn-light">사진첩 둘러보기</a>
+
+            <a sec:authorize="isAuthenticated()"
+               href="/boards/write"
+               class="btn btn-outline">
+                사진 남기기
+            </a>
+
+            <a sec:authorize="isAnonymous()"
+               href="/login"
+               class="btn btn-outline">
+                로그인하고 시작하기
+            </a>
+        </div>
+    </section>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
