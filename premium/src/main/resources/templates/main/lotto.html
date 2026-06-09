@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header :: head('경품추첨')}"></head>
+<body>
+
+<header th:replace="~{layout/header :: header}"></header>
+
+<main class="main-content">
+    <div class="lotto-container">
+        <h2>🎰 경품 추첨</h2>
+        <p class="lotto-desc">추첨 버튼을 누를 때마다 새로운 번호가 생성됩니다.</p>
+
+        <div class="lotto-balls">
+            <div class="lotto-ball" th:each="num : ${numbers}" th:text="${num}"></div>
+        </div>
+
+        <a th:href="@{/lotto}" class="btn-primary lotto-btn">다시 추첨하기</a>
+    </div>
+</main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+
+<style>
+    .lotto-container {
+        max-width: 600px;
+        margin: 6rem auto;
+        text-align: center;
+        padding: 0 1.5rem;
+    }
+
+    .lotto-container h2 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 0.8rem;
+    }
+
+    .lotto-desc {
+        color: #7878a0;
+        margin-bottom: 3rem;
+        font-size: 0.95rem;
+    }
+
+    .lotto-balls {
+        display: flex;
+        justify-content: center;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+    }
+
+    .lotto-ball {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #a78bfa, #7c3aed);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #fff;
+        box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
+        animation: popIn 0.4s ease both;
+    }
+
+    .lotto-ball:nth-child(1) { animation-delay: 0.05s; }
+    .lotto-ball:nth-child(2) { animation-delay: 0.15s; }
+    .lotto-ball:nth-child(3) { animation-delay: 0.25s; }
+    .lotto-ball:nth-child(4) { animation-delay: 0.35s; }
+    .lotto-ball:nth-child(5) { animation-delay: 0.45s; }
+
+    @keyframes popIn {
+        0%   { transform: scale(0); opacity: 0; }
+        70%  { transform: scale(1.15); }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    .lotto-btn {
+        padding: 0.9rem 2.5rem;
+        font-size: 1rem;
+    }
+</style>
+
+</body>
+</html>

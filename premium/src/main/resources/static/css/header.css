@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0a0a0f;
+    color: #e8e8f0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: rgba(10, 10, 20, 0.95);
+    border-bottom: 1px solid rgba(160, 120, 255, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #a78bfa;
+    letter-spacing: 1px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #b0b0c0;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.nav-menu a:hover {
+    color: #a78bfa;
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.btn-login {
+    text-decoration: none;
+    color: #a78bfa;
+    border: 1px solid #a78bfa;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn-login:hover {
+    background: #a78bfa;
+    color: #0a0a0f;
+}
+
+.btn-signup {
+    text-decoration: none;
+    background: linear-gradient(135deg, #a78bfa, #7c3aed);
+    color: #fff;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+}
+
+.btn-signup:hover {
+    opacity: 0.85;
+}

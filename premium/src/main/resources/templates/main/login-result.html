@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header :: head('로그인 결과')}"></head>
+<body>
+
+<header th:replace="~{layout/header :: header}"></header>
+
+<main class="main-content">
+    <div class="form-container">
+        <h2>환영합니다!</h2>
+        <p style="text-align:center; color:#a78bfa; font-size:1.3rem; margin: 1rem 0;">
+            <strong th:text="${username}"></strong>님
+        </p>
+        <!-- admin이면 관리자 메시지 -->
+        <p th:if="${username == 'admin'}" style="text-align:center; color:#f59e0b; margin-bottom:2rem;">
+            관리자 계정으로 로그인하셨습니다.
+        </p>
+
+        <!-- admin이 아니면 일반 회원 메시지 -->
+        <p th:unless="${username == 'admin'}" style="text-align:center; color:#7878a0; margin-bottom:2rem;">
+            Premium Club에 로그인하셨습니다.
+        </p>
+        <a th:href="@{/}" class="btn-primary full-width" style="text-align:center;">메인으로 돌아가기</a>
+    </div>
+</main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+
+</body>
+</html>

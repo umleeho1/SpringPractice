@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header :: head('홈')}"></head>
+<body>
+
+<header th:replace="~{layout/header :: header}"></header>
+
+<main class="main-content">
+
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>당신만을 위한<br><span>프리미엄 혜택</span></h1>
+            <p>Premium Club 멤버십으로 특별한 혜택을 누리세요.<br>지금 가입하면 첫 달 무료!</p>
+            <div class="hero-buttons">
+                <a th:href="@{/signup}" class="btn-primary">무료로 시작하기</a>
+                <a href="#benefits" class="btn-secondary">혜택 보기</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="card-visual">
+                <div class="card-shine"></div>
+                <div class="card-text">
+                    <span class="card-label">PREMIUM</span>
+                    <span class="card-name">CLUB MEMBER</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 혜택 섹션 -->
+    <section class="benefits" id="benefits">
+        <h2>멤버십 혜택</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🎁</div>
+                <h3>월 정기 선물</h3>
+                <p>매달 엄선된 프리미엄 상품을 배송해 드립니다.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🏷️</div>
+                <h3>최대 30% 할인</h3>
+                <p>제휴 브랜드 및 파트너샵에서 특별 할인 혜택을 받으세요.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎫</div>
+                <h3>이벤트 우선 입장</h3>
+                <p>콘서트, 전시회 등 다양한 이벤트에 우선 참가 기회를 드립니다.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📞</div>
+                <h3>전담 고객 지원</h3>
+                <p>24시간 전담 상담사가 빠르게 도와드립니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 가입 유도 배너 -->
+    <section class="cta-banner">
+        <h2>지금 바로 시작하세요</h2>
+        <p>수천 명의 회원이 이미 Premium Club을 즐기고 있습니다.</p>
+        <a th:href="@{/signup}" class="btn-primary">회원가입</a>
+    </section>
+
+</main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+
+</body>
+</html>
